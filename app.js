@@ -1,23 +1,32 @@
-// Mapping function
 function Mapping(arr, callback) {
     let result = [];
-    let accumulator = 0;
+    let map = 0;
   
     for (let i = 0; i < arr.length; i++) {
-      accumulator = callback(accumulator, arr[i]);
-      result.push(accumulator);
+      map = callback(map, arr[i]);
+      result.push(map);
     }
   
     return result;
   }
   
-  // Callback function
-  function callbackFunc(previousSum, currentElement) {
+  
+  function callback(previousSum, currentElement) {
     return previousSum + currentElement;
   }
   
-  // Example usage
-  const arr = [1, 2, 3, 4, 5];
-  const mappedResult = Mapping(arr, callbackFunc);
-  console.log(mappedResult);
+  function performMapping() {
+    const arrayInput = document.getElementById('arrayInput');
+    const userInput = arrayInput.value.trim();
+  
+    if (!userInput) {
+      alert('Veuillez entrer un tableau valide.');
+      return;
+    }
+  
+    const userArray = userInput.split(',').map(Number);
+    const mappedResult = Mapping(userArray, callback);
+  
+    alert(`Résultat du mappage : ${mappedResult.join(', ')}`);
+  }
   
